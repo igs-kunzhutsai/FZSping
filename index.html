@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      var oldErr = console.error;
+      console.error = function() {
+        if (arguments[0] === 'Script error.' || (arguments[0] && arguments[0].message === 'Script error.')) return;
+        return oldErr.apply(console, arguments);
+      };
+      window.addEventListener('error', function(e) {
+        if (e.message === 'Script error.' || (typeof e.error === 'string' && e.error.includes('Script error.'))) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+        }
+      }, true);
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      window.addEventListener('error', function(e) {
+        var div = document.createElement('div');
+        div.style.cssText = 'color:red; background:white; position:absolute; top:0; left:0; z-index:99999; padding:10px; font-family:monospace; white-space:pre-wrap; font-size:12px; pointer-events:none;';
+        div.textContent = 'INIT ERROR: ' + (e.error ? e.error.stack : e.message);
+        document.body.appendChild(div);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

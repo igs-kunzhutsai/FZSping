@@ -1,0 +1,8 @@
+{
+  "name": "Remix: 迴旋突擊彩票機V0.6",
+  "description": "",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
